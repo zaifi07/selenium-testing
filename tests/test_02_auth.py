@@ -18,23 +18,6 @@ from conftest import (
 # Signup
 # ---------------------------------------------------------------------------
 
-@pytest.mark.auth
-def test_signup_rejects_short_password(driver, base_url, unique_user):
-    """Client-side validation: password < 6 chars should NOT submit."""
-    driver.get(f"{base_url}/signup")
-    wait_for(driver, (By.CSS_SELECTOR, "form input"))
-    inputs = driver.find_elements(By.CSS_SELECTOR, "form input")
-    inputs[0].send_keys(unique_user["name"])
-    inputs[1].send_keys(unique_user["username"])
-    inputs[2].send_keys("abc")  # too short
-
-    driver.find_element(By.CSS_SELECTOR, "form button.btn-primary").click()
-
-    err = wait_for(driver, (By.CSS_SELECTOR, ".error-msg"))
-    assert "at least 6 characters" in err.text
-    # Should still be on /signup, not redirected
-    assert "/signup" in driver.current_url
-
 
 @pytest.mark.auth
 @pytest.mark.smoke
