@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+.Python
+*.egg-info/
+
+# pytest
+.pytest_cache/
+.cache/
+
+# Local config
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Selenium screenshots / logs
+screenshots/
+*.log
